@@ -1,0 +1,864 @@
+:root {
+    --primary: #2c3e50;
+    --accent: #3498db;
+    --white: #ffffff;
+}
+
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+    background: var(--primary);
+}
+
+.particles {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.particle {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    animation: float 20s infinite linear;
+}
+
+#start-screen {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(45deg, #2c3e50, #3498db);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    overflow: hidden;
+}
+
+.start-content {
+    color: var(--white);
+    padding: 2rem;
+    text-align: center;
+    z-index: 2;
+}
+
+.start-content h1 {
+    font-size: 3em;
+    margin-bottom: 2rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+.pulse-button {
+    padding: 1.5rem 3rem;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 50px;
+    background: var(--white);
+    color: var(--primary);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.pulse-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.5s ease;
+}
+
+.pulse-button:hover::before {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+}
+
+.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    pointer-events: none;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+#message-container {
+    height: 100vh;
+    background: linear-gradient(45deg, #2c3e50, #3498db);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: opacity 0.5s ease;
+}
+
+.memory-card {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    text-align: center;
+    max-width: 600px;
+    width: 90%;
+    position: relative;
+    overflow: hidden;
+    transition: opacity 0.5s ease;
+}
+
+.memory-card h2 {
+    transform: none !important;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.memory-circle {
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(45deg, #f3f4f6, #fff);
+    border-radius: 50%;
+    margin: 2rem auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.6s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.memory-circle:hover {
+    transform: scale(1.05);
+    background: #e0e0e0;
+}
+
+.next-button {
+    padding: 1rem 2rem;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+    transform: translateY(20px);
+    opacity: 0;
+}
+
+.next-button.visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.next-button:hover {
+    background: #2980b9;
+}
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 0.8s ease-in forwards;
+}
+
+.slide-in {
+    animation: slideIn 0.8s ease-out;
+}
+
+.rotate-in {
+    animation: rotateIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes rotateIn {
+    from {
+        transform: rotateY(180deg) scale(0.3);
+        opacity: 0;
+    }
+    to {
+        transform: rotateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px var(--accent); }
+    to { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px var(--accent); }
+}
+
+@keyframes rotate3D {
+    0% { transform: perspective(1000px) rotateY(0deg); }
+    100% { transform: perspective(1000px) rotateY(360deg); }
+}
+
+.reveal-animation {
+    animation: reveal 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes reveal {
+    0% {
+        transform: scale(0.3) rotate(0deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2) rotate(180deg);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(1) rotate(360deg);
+        opacity: 1;
+    }
+}
+
+/* Añadir estos estilos para el contenido */
+.memory-content {
+    transform: none !important; /* Asegura que el texto no se rote */
+    font-size: 1.1em;
+    line-height: 1.5;
+    padding: 1rem;
+}
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 0.5s ease-in forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.memory-circle span {
+    transform: none !important;
+    display: inline-block;
+}
+
+/* Estilos para los mensajes */
+.message-content {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.message-title {
+    color: #2c3e50;
+    font-size: 2em;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.message-text {
+    font-size: 1.2em;
+    line-height: 1.6;
+    color: #34495e;
+    margin-bottom: 2rem;
+}
+
+.heart-animation {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle at center, #e74c3c 0%, transparent 70%);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.2); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 0.6; }
+}
+
+/* Efectos de hover */
+.message-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+}
+
+/* Animación de partículas de amor */
+.love-particle {
+    position: absolute;
+    pointer-events: none;
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+/* Estilos adicionales para los nuevos elementos */
+.glow-text {
+    font-size: 3.5em;
+    color: white;
+    text-shadow: 0 0 10px rgba(255,255,255,0.8),
+                 0 0 20px rgba(255,255,255,0.8),
+                 0 0 30px rgba(52, 152, 219,0.8),
+                 0 0 40px rgba(52, 152, 219,0.8);
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+.message-circle {
+    width: 280px;
+    height: 280px;
+    background: white;
+    border-radius: 50%;
+    margin: 2rem auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    animation: scaleIn 0.5s ease-out;
+}
+
+.message-circle:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+}
+
+.message-circle span {
+    color: white;
+    font-size: 1.2em;
+    text-align: center;
+    padding: 2rem;
+}
+
+.progress-bar {
+    width: 80%;
+    height: 4px;
+    background: rgba(255,255,255,0.2);
+    margin: 2rem auto;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: #e74c3c;
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.heart-container {
+    margin: 3rem 0;
+    animation: fadeInUp 0.8s ease-out 0.4s backwards;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.heart {
+    background-color: #e74c3c;
+    display: inline-block;
+    height: 80px;
+    position: relative;
+    width: 80px;
+    animation: heartBeat 1.3s ease-in-out infinite;
+}
+
+.heart:before,
+.heart:after {
+    content: "";
+    background-color: #e74c3c;
+    border-radius: 50%;
+    height: 80px;
+    position: absolute;
+    width: 80px;
+}
+
+.heart:before {
+    top: -40px;
+    left: 0;
+}
+
+.heart:after {
+    left: 40px;
+    top: 0;
+}
+
+@keyframes heartBeat {
+    0% {
+        transform: scale(1);
+    }
+    14% {
+        transform: scale(1.1);
+    }
+    28% {
+        transform: scale(1);
+    }
+    42% {
+        transform: scale(1.1);
+    }
+    70% {
+        transform: scale(1);
+    }
+}
+
+.final-card {
+    background: rgba(255,255,255,0.95);
+    padding: 3rem;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+
+.restart-button {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 2rem;
+}
+
+.restart-button:hover {
+    background: #c0392b;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Actualizar los estilos del título */
+.message-card h2 {
+    color: #2c3e50;
+    font-size: 2em;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    transform: none !important; /* Prevenir cualquier rotación */
+    opacity: 0;
+    animation: fadeInTitle 1s ease forwards;
+}
+
+@keyframes fadeInTitle {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Actualizar la animación de revelación */
+.reveal-animation {
+    animation: revealCard 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes revealCard {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Asegurar que el contenido no gire */
+.message-content {
+    transform: none !important;
+}
+
+.message-text {
+    transform: none !important;
+    opacity: 0;
+    animation: fadeInText 0.8s ease forwards 0.3s;
+}
+
+@keyframes fadeInText {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Corregir la orientación del texto */
+.start-content h1,
+.start-content button,
+.message-content,
+.message-circle span {
+    transform: none !important; /* Prevenir cualquier rotación */
+    writing-mode: horizontal-tb !important; /* Forzar orientación horizontal */
+    text-orientation: mixed !important; /* Mantener orientación normal del texto */
+}
+
+/* Asegurar que el contenedor principal no rote */
+#start-screen,
+#message-container {
+    transform-style: flat !important; /* Prevenir transformaciones 3D */
+    perspective: none !important; /* Eliminar perspectiva 3D */
+}
+
+/* Actualizar las animaciones para evitar rotaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Eliminar todas las transformaciones y rotaciones */
+.start-content {
+    color: var(--white);
+    padding: 2rem;
+    text-align: center;
+    z-index: 2;
+}
+
+.memory-card {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    text-align: center;
+    max-width: 600px;
+    width: 90%;
+    position: relative;
+    overflow: hidden;
+    transition: opacity 0.5s ease;
+}
+
+/* Nuevas animaciones sin rotaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Eliminar todas las animaciones que incluyan rotate */
+.glow-text {
+    font-size: 3.5em;
+    color: white;
+    text-shadow: 0 0 10px rgba(255,255,255,0.8),
+                 0 0 20px rgba(255,255,255,0.8),
+                 0 0 30px rgba(52, 152, 219,0.8),
+                 0 0 40px rgba(52, 152, 219,0.8);
+}
+
+/* Asegurar que ningún elemento rote */
+* {
+    transform: none !important;
+}
+
+/* Mejorar el diseño de la tarjeta y sus elementos */
+.message-card {
+    background: transparent;
+    padding: 2rem;
+    text-align: center;
+    max-width: 600px;
+    width: 90%;
+}
+
+.message-card h2 {
+    color: white;
+    font-size: 2.5em;
+    margin-bottom: 2rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    font-weight: 600;
+}
+
+.message-circle {
+    width: 280px;
+    height: 280px;
+    background: white;
+    border-radius: 50%;
+    margin: 2rem auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    padding: 2rem;
+}
+
+.message-text {
+    font-size: 1.2em;
+    line-height: 1.6;
+    color: #2c3e50;
+    margin: 0;
+    padding: 0 1rem;
+}
+
+/* Mejorar la barra de progreso */
+.progress-bar {
+    width: 200px;
+    height: 4px;
+    background: rgba(255,255,255,0.2);
+    margin: 2rem auto;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: #e74c3c;
+    transition: width 0.5s ease;
+}
+
+/* Mejorar el botón siguiente */
+.next-button {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 2rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.next-button:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.next-button.visible {
+    display: inline-block;
+    animation: fadeInButton 0.5s ease forwards;
+}
+
+@keyframes fadeInButton {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Añadir efecto hover al círculo */
+.message-circle:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+}
+
+.click-text {
+    font-size: 1.8em;
+    color: #2c3e50;
+    font-weight: 500;
+    text-align: center;
+    padding: 20px;
+    user-select: none; /* Prevenir selección de texto */
+}
+
+.message-circle:hover .click-text {
+    color: #3498db;
+}
+
+/* Animaciones para los elementos */
+.message-card {
+    animation: fadeIn 0.5s ease-out;
+}
+
+.message-circle {
+    width: 280px;
+    height: 280px;
+    background: white;
+    border-radius: 50%;
+    margin: 2rem auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    animation: scaleIn 0.5s ease-out;
+}
+
+.message-text {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Definir las animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Animación para el botón siguiente */
+.next-button.visible {
+    animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animación para el texto al hacer hover */
+.click-text {
+    font-size: 1.8em;
+    color: #2c3e50;
+    font-weight: 500;
+    text-align: center;
+    padding: 20px;
+    user-select: none;
+    transition: all 0.3s ease;
+}
+
+.message-circle:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+}
+
+.message-circle:hover .click-text {
+    color: #3498db;
+    transform: scale(1.05);
+}
+
+/* Animación para la barra de progreso */
+.progress {
+    height: 100%;
+    background: #e74c3c;
+    transition: width 0.8s ease-in-out;
+    animation: progressGlow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes progressGlow {
+    from {
+        box-shadow: 0 0 5px rgba(231, 76, 60, 0.5);
+    }
+    to {
+        box-shadow: 0 0 10px rgba(231, 76, 60, 0.8);
+    }
+}
+
+.message-text {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    font-size: 1.2em;
+    line-height: 1.6;
+    color: #2c3e50;
+    margin: 0;
+    padding: 0 1rem;
+}
+
+.click-text {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.is-hidden {
+    display: none;
+}
+
+/* Estilos para el mensaje final */
+.final-title {
+    font-size: 4em;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    margin-bottom: 1.5rem;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.final-text {
+    font-size: 1.8em;
+    color: white;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    animation: fadeInUp 0.8s ease-out 0.2s backwards;
+}

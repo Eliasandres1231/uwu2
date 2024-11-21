@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para el Mejor Papá</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+    <!-- Pantalla inicial -->
+    <section id="start-screen">
+        <div class="start-content">
+            <h1 class="glow-text">Papá, esto es para ti...</h1>
+            <button id="start-button" class="pulse-button">Abrir mi corazón</button>
+        </div>
+    </section>
+
+    <!-- Contenedor principal -->
+    <div id="message-container" class="is-hidden">
+        <div class="message-card">
+            <div class="message-circle">
+                <span>Toca para descubrir</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+            <button class="next-button is-hidden">Siguiente mensaje ❤️</button>
+        </div>
+    </div>
+
+    <!-- Partículas de amor -->
+    <div class="particles-container"></div>
+
+    <!-- Mensaje final -->
+    <div id="final-message" class="is-hidden">
+        <div class="final-card">
+            <h2>Te Amo Papá</h2>
+            <p>Gracias por ser el mejor padre del mundo</p>
+            <div class="heart-container">
+                <div class="heart"></div>
+            </div>
+            <button onclick="restartJourney()" class="restart-button">Volver a empezar</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
